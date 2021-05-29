@@ -2,10 +2,25 @@
   <head>
   </head>
   <body>
-    <div id="main"></div>
+    <pre id="main"></pre>
   </body>
   <script language="JavaScript">
-    let mainEl = document.getElementById("main")
-    mainEl.innerHTML = '<b>Hello, World!!!</b>';
+    
+    let mainEl = document.getElementById("main");
+    //exposing token to non important data for R&D
+    let token = 'secret_zFt9XuEDHLA9tekHhSvZX721HBY43I1eRtY3Lh8NLhd';
+    
+    fetch('https://api.notion.com/v1/databases/2113a093-f52c-49c5-a9b6-c0b02d879342/query',{
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token
+      },
+      body: '{}'
+    }).then( res => res.json() ).then( data => {
+      mainEl.innerHTML = data;    
+    })
+
   </script>
 </html>
